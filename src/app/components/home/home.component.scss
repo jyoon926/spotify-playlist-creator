@@ -372,3 +372,14 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 0 20px;
+    height: 60px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}

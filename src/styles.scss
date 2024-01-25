@@ -14,6 +14,7 @@ html {
   color: $text;
   background-color: $bg;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
