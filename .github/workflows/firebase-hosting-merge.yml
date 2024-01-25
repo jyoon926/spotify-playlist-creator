@@ -15,8 +15,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: >-
-            ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SPOTIFY_PLAYLIST_CREATOR_3C0BA
-            }}
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_INSPIREDPLAYLISTS }}'
           channelId: live
-          projectId: spotify-playlist-creator-3c0ba
+          projectId: inspiredplaylists
