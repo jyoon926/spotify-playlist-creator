@@ -80,7 +80,7 @@
 
   <div class="section" *ngIf="playlist.length > 0">
     <div class="title">
-      <input class="playlist-title" placeholder="New playlist" #playlistTitle>
+      <input class="playlist-title" value="{{generatedPlaylistTitle}}" placeholder="Playlist title" #playlistTitle>
     </div>
     <input class="playlist-description" value="{{generatedPlaylistDescription}}" placeholder="Description of your playlist" maxlength="300" #playlistDescription>
     <div class="tracks">
