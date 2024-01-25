@@ -1,0 +1,46 @@
+@import '../../app.component.scss';
+
+.container {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  opacity: 0.25;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .circle {
+    height: 700vw;
+    width: 700vw;
+    position: fixed;
+    border-radius: 100%;
+    border: max(0.7vw, 6px) solid $text;
+    top: 15vh;
+    animation: bob 7s ease-in-out infinite;
+    transform: translateY(100vh);
+    
+    @for $i from 0 through 9 {
+      &:nth-child(#{$i + 1}) {
+        animation-delay: $i * 0.5s - 1.5s;
+        opacity: -1 * abs(0.1 * $i - 0.5) + 0.5;
+      }
+    }
+  }
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(100vh) scaleX(1);
+  }
+  50% {
+    transform: translateY(0) scaleX(0.4);
+  }
+  to {
+    transform: translateY(100vh) scaleX(0.6);
+  }
+}

@@ -1,1 +1,103 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'app/app.component.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+html {
+  margin: 0;
+  font-family: 'neue-haas-grotesk-text', serif;
+  font-size: 15px;
+  color: $text;
+  background-color: $bg;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+.button, .button-accent {
+  color: $bg;
+  padding: 12px 18px;
+  cursor: pointer;
+  text-align: center;
+  transition-duration: .3s;
+  background: $text;
+  backdrop-filter: blur(10px);
+  font-weight: bold;
+  border-radius: 5px;
+  //box-shadow: 0 3px 14px -11px $text;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.button-accent {
+  color: $text;
+  padding: 16px 18px;
+  background: $accent;
+  
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.link {
+  font-weight: bold;
+  border-bottom: 2px solid $text;
+  transition-duration: .3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+h1 {
+  font-size: max(5rem, 5vw);
+  font-family: 'neue-haas-grotesk-display', serif;
+}
+
+h2 {
+  font-size: max(4rem, 4vw);
+  font-family: 'neue-haas-grotesk-display', serif;
+}
+
+h3 {
+  font-size: max(3rem, 3vw);
+  font-family: 'neue-haas-grotesk-display', serif;
+}
+
+h4 {
+  font-size: 2rem;
+  font-family: 'neue-haas-grotesk-display', serif;
+}
+
+h5 {
+  font-size: 1.5rem;
+  font-family: 'neue-haas-grotesk-display', serif;
+}
+
+p {
+  line-height: 1.15;
+  font-size: 1rem;
+}
+
+input {
+}
+
+a {
+  color: $text;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
