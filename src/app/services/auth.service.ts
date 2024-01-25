@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class AuthService {
   token?: string;
   private spotify_client_id = environment.SPOTIFY_CLIENT_ID;
   private spotify_client_secret = environment.SPOTIFY_CLIENT_SECRET;
-  private spotify_redirect_uri = 'http://localhost:4200/callback';
+  private spotify_redirect_uri = environment.url + '/callback';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   setToken() {
     this.token = this.getToken();
@@ -47,7 +48,7 @@ export class AuthService {
     this.http.post('https://accounts.spotify.com/api/token', new URLSearchParams(params), authOptions).subscribe((res: any) => {
       localStorage.setItem('access_token', res.access_token);
       this.token = res.access_token;
-      window.location.href = '/';
+      this.router.navigate(['/']);
     });
   }
 
@@ -57,7 +58,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('access_token');
-    window.location.href = '/';
+    this.token = "";
+    this.router.navigate(['/']);
   }
   
   generateRandomString(length: number) {
