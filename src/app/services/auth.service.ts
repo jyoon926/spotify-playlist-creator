@@ -21,7 +21,7 @@ export class AuthService {
 
   login() {
     const state = this.generateRandomString(16);
-    const scope = 'user-read-email user-read-private playlist-modify-public playlist-modify-private';
+    const scope = 'playlist-modify-public playlist-modify-private';
     let params = new URLSearchParams({
       response_type: 'code',
       client_id: this.spotify_client_id,
