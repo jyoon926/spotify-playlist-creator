@@ -11,12 +11,15 @@ export class PlaylistsService {
   ) { }
 
   createPlaylist(userId: string, name: string, description: string, isPublic: boolean) {
-    console.log(description);
     return this.http.post<any>(`/v1/users/${userId}/playlists`, {
       name: name ? name : 'New playlist',
       description: description ? description : '',
       public: isPublic
     });
+  }
+
+  editPlaylistDescription(playlist_id: string, description: string) {
+    return this.http.put(`/v1/playlists/${playlist_id}`, { description });
   }
 
   addTracks(playlistId: string, uris: string[]) {

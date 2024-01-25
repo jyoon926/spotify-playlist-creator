@@ -18,6 +18,6 @@ export class AppComponent implements OnInit {
   }
 
   get isLoggedIn(): boolean {
-    return this.authService.token != null && this.authService.token != "";
+    return this.authService.token ? this.authService.token.length > 0 : false;
   }
 }

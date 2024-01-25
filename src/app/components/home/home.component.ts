@@ -174,12 +174,14 @@ export class HomeComponent implements OnInit {
 
   createPlaylist(title: string, description: string) {
     this.creatingPlaylist = true;
-    this.playlistsService.createPlaylist(this.user.id, title, description, true).subscribe(playlist => {
-      const uris = this.playlist.map(track => track.uri);
-      this.createdPlaylists.push(playlist);
-      this.playlistsService.addTracks(playlist.id, uris).subscribe(() => {
-        this.creatingPlaylist = false;
-        this.scrollToBottom();
+    this.playlistsService.createPlaylist(this.user.id, title, "", true).subscribe(playlist => {
+      this.playlistsService.editPlaylistDescription(playlist.id, description).subscribe(() => {
+        const uris = this.playlist.map(track => track.uri);
+        this.createdPlaylists.push(playlist);
+        this.playlistsService.addTracks(playlist.id, uris).subscribe(() => {
+          this.creatingPlaylist = false;
+          this.scrollToBottom();
+        });
       });
     })
   }

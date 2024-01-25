@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('access_token')!;
+    return this.token ? this.token : localStorage.getItem('access_token')!;
   }
 
   logout() {
