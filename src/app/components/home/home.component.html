@@ -4,7 +4,7 @@
   <h5>Spotify Playlist Creator</h5>
   <div class="links">
     <a (click)="logout()" class="link">Logout</a>
-    <img src="{{user.images[0].url}}" alt="">
+    <img src="{{user ? user.images[0].url : ''}}" alt="">
   </div>
 </div>
 
