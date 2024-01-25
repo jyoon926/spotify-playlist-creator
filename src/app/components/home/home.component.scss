@@ -87,7 +87,7 @@
       height: 15px;
       width: 15px;
       border: 1px solid rgba($text, 0.2);
-      border-top: 0px;
+      border-top: 1px solid rgba($text, 0);
       border-radius: 100%;
       animation: spin 1s linear infinite;
     }
