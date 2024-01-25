@@ -59,7 +59,6 @@
     img {
       width: 30px;
       border-radius: 100vw;
-      //box-shadow: 0 3px 12px -8px $text;
     }
   }
 }
@@ -126,7 +125,6 @@
       margin-top: 40px;
       backdrop-filter: blur(5px);
       border-radius: 5px;
-      //box-shadow: 0 3px 14px -11px $text;
     }
 
     .playlist-description {
@@ -137,7 +135,6 @@
       padding: 5px 10px;
       backdrop-filter: blur(5px);
       border-radius: 5px;
-      //box-shadow: 0 3px 14px -11px $text;
     }
 
     .search-bar {
@@ -150,7 +147,6 @@
       width: 300px;
       border-radius: 5px;
       backdrop-filter: blur(5px);
-      //box-shadow: 0 3px 14px -11px $text;
   
       p {
         opacity: 0.5;
@@ -199,7 +195,7 @@
         img {
           height: 35px;
           border-radius: 5px;
-          //box-shadow: 0 3px 14px -11px $text;
+    
         }
         
         .name {
@@ -250,7 +246,6 @@
         background: rgba($text, 0.1);
         width: 50px;
         border-radius: 5px;
-        //box-shadow: 0 3px 14px -11px $text;
       }
     }
 
@@ -271,11 +266,21 @@
         background: rgba($text, 0.1);
         gap: 10px;
         opacity: 0.3;
-        width: 220px;
+        width: 155px;
         border-radius: 5px;
         cursor: pointer;
         backdrop-filter: blur(5px);
-        //box-shadow: 0 3px 14px -11px $text;
+          
+        .checkbox {
+          width: 1rem;
+          height: 1rem;
+          background: $bg;
+          border: 2px solid $bg;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 100%;
+        }
 
         .row {
           display: flex;
@@ -283,17 +288,6 @@
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          
-          .checkbox {
-            width: 1rem;
-            height: 1rem;
-            background: $bg;
-            border: 2px solid $bg;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 100%;
-          }
         }
 
         input {
@@ -322,7 +316,7 @@
 
         &.on {
           opacity: 1;
-          .row .checkbox {
+          .checkbox {
             background: $accent;
           }
         }
