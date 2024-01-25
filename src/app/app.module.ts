@@ -9,7 +9,7 @@ import { AuthService } from './services/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CallbackComponent } from './components/callback/callback.component';
 
 @NgModule({
@@ -24,7 +24,8 @@ import { CallbackComponent } from './components/callback/callback.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     AuthService,

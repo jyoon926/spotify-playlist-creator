@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject, debounceTime, lastValueFrom, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   creatingPlaylist = false;
   generatedPlaylistTitle = "";
   generatedPlaylistDescription = "";
+  @ViewChild('playlistTitle') playlistTitle!: ElementRef<HTMLInputElement>;
+  @ViewChild('playlistDescription') playlistDescription!: ElementRef<HTMLInputElement>;
 
   constructor(
     private userService: UsersService,
@@ -90,7 +92,7 @@ export class HomeComponent implements OnInit {
 
   createPlaylist(title: string, description: string) {
     this.creatingPlaylist = true;
-    this.playlistsService.createPlaylist(this.user.id, title, "", true).subscribe(playlist => {
+    this.playlistsService.createPlaylist(this.user.id, title, description, true).subscribe(playlist => {
       this.playlistsService.editPlaylistDescription(playlist.id, description).subscribe(() => {
         const uris = this.playlist.map(track => track.uri);
         this.createdPlaylists.push(playlist);
@@ -116,6 +118,9 @@ export class HomeComponent implements OnInit {
     const desc = await this.openAiService.completion(descMessage);
     this.generatedPlaylistTitle = title!.trim().replaceAll('"', '');
     this.generatedPlaylistDescription = desc!.trim().replaceAll('"', '');
+    await setTimeout(() => {
+      this.resizeTextareas();
+    }, 50);
   }
 
   toggleParameter(i: number) {
@@ -146,5 +151,12 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);
+  }
+
+  resizeTextareas() {
+    this.playlistTitle.nativeElement.style.height = "1px";
+    this.playlistTitle.nativeElement.style.height = (this.playlistTitle.nativeElement.scrollHeight) + "px";
+    this.playlistDescription.nativeElement.style.height = "1px";
+    this.playlistDescription.nativeElement.style.height = (this.playlistDescription.nativeElement.scrollHeight) + "px";
   }
 }

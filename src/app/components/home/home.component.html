@@ -80,9 +80,9 @@
 
   <div class="section" *ngIf="playlist.length > 0">
     <div class="title">
-      <input class="playlist-title" value="{{generatedPlaylistTitle}}" placeholder="Playlist title" #playlistTitle>
+      <textarea class="playlist-title" (input)="resizeTextareas()" value="{{generatedPlaylistTitle}}" placeholder="Playlist title" #playlistTitle></textarea>
     </div>
-    <input class="playlist-description" value="{{generatedPlaylistDescription}}" placeholder="Description of your playlist" maxlength="300" #playlistDescription>
+    <textarea class="playlist-description" (input)="resizeTextareas()" value="{{generatedPlaylistDescription}}" placeholder="Description of your playlist" maxlength="300" #playlistDescription></textarea>
     <div class="tracks">
       <div *ngFor="let track of playlist; let i = index" class="track">
         <p class="index">{{i + 1}}</p>
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <div class="button-row" *ngIf="selectedTracks.length > 0">
+    <div class="button-row">
       <button class="button-accent generate" (click)="createPlaylist(playlistTitle.value, playlistDescription.value)">Create and add to library</button>
       <div class="spinner" *ngIf="creatingPlaylist"></div>
     </div>

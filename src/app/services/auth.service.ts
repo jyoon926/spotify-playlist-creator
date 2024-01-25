@@ -46,6 +46,7 @@ export class AuthService {
       }
     };
     this.http.post('https://accounts.spotify.com/api/token', new URLSearchParams(params), authOptions).subscribe((res: any) => {
+      console.log(res);
       localStorage.setItem('access_token', res.access_token);
       this.token = res.access_token;
       this.router.navigate(['/']);

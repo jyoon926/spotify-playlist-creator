@@ -87,11 +87,15 @@
       width: 100%;
       box-sizing: border-box;
       background: rgba($text, 0.1);
-      padding: 0 10px;
+      padding: 10px;
       font-family: 'neue-haas-grotesk-display', serif;
       margin-top: 40px;
       backdrop-filter: blur(5px);
       border-radius: 5px;
+      overflow: hidden;
+      resize: none;
+      text-wrap: wrap;
+      height: 77px;
     }
 
     .playlist-description {
@@ -99,9 +103,10 @@
       width: 100%;
       box-sizing: border-box;
       background: rgba($text, 0.1);
-      padding: 5px 10px;
+      padding: 8px 10px;
       backdrop-filter: blur(5px);
       border-radius: 5px;
+      height: 30px;
     }
 
     .search-bar {
