@@ -7,6 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://use.typekit.net/uzo7lqz.css">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBdy733QraMVLFJCG3PLdLD-5c_xLmTGfQ",
+      authDomain: "spotify-playlist-creator-3c0ba.firebaseapp.com",
+      projectId: "spotify-playlist-creator-3c0ba",
+      storageBucket: "spotify-playlist-creator-3c0ba.appspot.com",
+      messagingSenderId: "158125425294",
+      appId: "1:158125425294:web:2aa2198fc9c13ef119bfdf",
+      measurementId: "G-7CWRKB2C7K"
+    };
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </head>
 <body>
   <app-root></app-root>
