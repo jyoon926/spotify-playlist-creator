@@ -1,144 +1,120 @@
-<!-- <div class="cd">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path id="circlePath1" fill="none" d="
-      M 20, 50
-      a 30,30 0 1,1 60,0
-      a 30,30 0 1,1 -60,0
-    " />
-    <path id="circlePath2" fill="none" d="
-      M 30, 50
-      a 20,20 0 1,1 40,0
-      a 20,20 0 1,1 -40,0
-    " />
-    <text id="text" font-size="7.1" font-weight="light" letter-spacing="-0.1em" fill="white">
-      <textPath id="textPath" href="#circlePath1">SPOTIFY PLAYLIST CREATOR — SPOTIFY PLAYLIST CREATOR —</textPath>
-    </text>
-    <text id="text" font-size="3.43" font-weight="light" letter-spacing="-0.05em" fill="white">
-      <textPath id="textPath" href="#circlePath2">BY JACOB YOON — BY JACOB YOON — BY JACOB YOON — BY JACOB YOON —</textPath>
-    </text>
-  </svg>
-  <div class="hole"></div>
-</div> -->
+<app-arcs></app-arcs>
 
-<div class="page">
-
-  <div class="header">
-    <h5>Spotify Playlist Creator</h5>
-    <div class="links">
-      <a (click)="logout()" class="link">Logout</a>
-      <img src="{{user.images[0].url}}" alt="">
-    </div>
+<div class="header">
+  <h5>Spotify Playlist Creator</h5>
+  <div class="links">
+    <a (click)="logout()" class="link">Logout</a>
+    <img src="{{user.images[0].url}}" alt="">
   </div>
+</div>
 
-  <div class="container">
+<div class="container">
 
-    <div class="section">
+  <div class="section">
 
-      <h2 class="title">Select a few songs to inspire your playlist.</h2>
+    <h2 class="title">Select a few songs to inspire your playlist.</h2>
 
-      <div class="button-row">
-        <label for="search" class="search-bar">
-          <input type="text" name="search" id="search" [formControl]='myControl' placeholder="Search for songs" (input)="setLoading()">
-        </label>
-        <div *ngIf="loadingSearch" class="spinner"></div>
-      </div>
-
-
-      <div class="tracks">
-        <div *ngFor="let track of searchResults" class="track">
-          <div class="image">
-            <img src="{{track.album.images[2].url}}" alt="">
-          </div>
-          <div class="name">
-            <p>{{track.name}}</p>
-            <span>{{track.artists[0].name}}</span>
-          </div>
-          <p class="album">{{track.album.name}}</p>
-          <button *ngIf="!selectedTracks.includes(track)" class="link" (click)="selectTrack(track)">Select</button>
-          <button *ngIf="selectedTracks.includes(track)" class="link" (click)="deselectTrack(track)">Deselect</button>
-        </div>
-      </div>
-
-      <h4 class="title" *ngIf="selectedTracks.length > 0">Selected tracks <em>({{selectedTracks.length == 5 ? 'max' : selectedTracks.length}})</em></h4>
-
-      <div class="tracks" *ngIf="selectedTracks.length > 0">
-        <div *ngFor="let track of selectedTracks; let i = index" class="track">
-          <div class="image">
-            <img src="{{track.album.images[2].url}}" alt="">
-          </div>
-          <div class="name">
-            <p>{{track.name}}</p>
-            <span>{{track.artists[0].name}}</span>
-          </div>
-          <p class="album">{{track.album.name}}</p>
-          <button class="link" (click)="deselectTrack(track)">Deselect</button>
-        </div>
-      </div>
-
-      <h4 class="title" *ngIf="selectedTracks.length > 0">Parameters</h4>
-
-      <div class="parameters" *ngIf="selectedTracks.length > 0">
-        <div class="parameter" *ngFor="let parameter of parameters; let i = index" [ngClass]="{'on': parameter.on}" (click)="toggleParameter(i)">
-          <div class="row">
-            <p class="name">{{parameter.displayName}}</p>
-            <div class="checkbox"></div>
-          </div>
-          <p>{{parameter.unit == '%' ? round(parameter.value / parameter.max * 100) : parameter.value}}{{parameter.unit!}}</p>
-          <input type="range" name="" id="" min="{{parameter.min}}" max="{{parameter.max}}" step="{{parameter.step}}" value="{{parameter.value}}" (input)="updateParameter($event, i)" (click)="updateParameter($event, i)">
-        </div>
-      </div>
-
-      <div class="length" *ngIf="selectedTracks.length > 0">
-        <label for="length">Playlist length</label>
-        <input type="number" id="length" value="{{playlistLength}}" (change)="changeLength($event)">
-      </div>
-
+    <div class="button-row">
+      <label for="search" class="search-bar">
+        <input type="text" name="search" id="search" [formControl]='myControl' placeholder="Search for songs" (input)="setLoading()">
+      </label>
+      <div *ngIf="loadingSearch" class="spinner"></div>
     </div>
-    
+
+
+    <div class="tracks">
+      <div *ngFor="let track of searchResults" class="track">
+        <div class="image">
+          <img src="{{track.album.images[2].url}}" alt="">
+        </div>
+        <div class="name">
+          <p>{{track.name}}</p>
+          <span>{{track.artists[0].name}}</span>
+        </div>
+        <p class="album">{{track.album.name}}</p>
+        <button *ngIf="!selectedTracks.includes(track)" class="link" (click)="selectTrack(track)">Select</button>
+        <button *ngIf="selectedTracks.includes(track)" class="link" (click)="deselectTrack(track)">Deselect</button>
+      </div>
+    </div>
+
+    <h4 class="title" *ngIf="selectedTracks.length > 0">Selected tracks <em>({{selectedTracks.length == 5 ? 'max' : selectedTracks.length}})</em></h4>
+
+    <div class="tracks" *ngIf="selectedTracks.length > 0">
+      <div *ngFor="let track of selectedTracks; let i = index" class="track">
+        <div class="image">
+          <img src="{{track.album.images[2].url}}" alt="">
+        </div>
+        <div class="name">
+          <p>{{track.name}}</p>
+          <span>{{track.artists[0].name}}</span>
+        </div>
+        <p class="album">{{track.album.name}}</p>
+        <button class="link" (click)="deselectTrack(track)">Deselect</button>
+      </div>
+    </div>
+
+    <h4 class="title" *ngIf="selectedTracks.length > 0">Parameters</h4>
+
+    <div class="parameters" *ngIf="selectedTracks.length > 0">
+      <div class="parameter" *ngFor="let parameter of parameters; let i = index" [ngClass]="{'on': parameter.on}" (click)="toggleParameter(i)">
+        <div class="row">
+          <p class="name">{{parameter.displayName}}</p>
+          <div class="checkbox"></div>
+        </div>
+        <p>{{parameter.unit == '%' ? round(parameter.value / parameter.max * 100) : parameter.value}}{{parameter.unit!}}</p>
+        <input type="range" name="" id="" min="{{parameter.min}}" max="{{parameter.max}}" step="{{parameter.step}}" value="{{parameter.value}}" (input)="updateParameter($event, i)" (click)="updateParameter($event, i)">
+      </div>
+    </div>
+
+    <div class="length" *ngIf="selectedTracks.length > 0">
+      <label for="length">Playlist length</label>
+      <input type="number" id="length" value="{{playlistLength}}" (change)="changeLength($event)">
+    </div>
+
     <div class="button-row" *ngIf="selectedTracks.length > 0">
       <button class="button-accent generate" (click)="generatePlaylist()">Generate playlist</button>
       <div class="spinner" *ngIf="generatingPlaylist"></div>
     </div>
+  </div>
+  
 
-    <div class="section" *ngIf="playlist.length > 0">
-      <div class="title">
-        <input class="playlist-title" placeholder="New playlist" #playlistTitle>
-      </div>
-      <input class="playlist-description" value="{{generatedPlaylistDescription}}" placeholder="Description of your playlist" #playlistDescription>
-      <div class="tracks">
-        <div *ngFor="let track of playlist; let i = index" class="track">
-          <p class="index">{{i + 1}}</p>
-          <div class="image">
-            <img src="{{track.album.images[2].url}}" alt="">
-          </div>
-          <div class="name">
-            <p>{{track.name}}</p>
-            <span>{{track.artists[0].name}}</span>
-          </div>
-          <p class="album">{{track.album.name}}</p>
-          <button class="link" (click)="removeTrack(track)">Remove</button>
+  <div class="section" *ngIf="playlist.length > 0">
+    <div class="title">
+      <input class="playlist-title" placeholder="New playlist" #playlistTitle>
+    </div>
+    <input class="playlist-description" value="{{generatedPlaylistDescription}}" placeholder="Description of your playlist" #playlistDescription>
+    <div class="tracks">
+      <div *ngFor="let track of playlist; let i = index" class="track">
+        <p class="index">{{i + 1}}</p>
+        <div class="image">
+          <img src="{{track.album.images[2].url}}" alt="">
         </div>
-      </div>
-
-      <div class="button-row" *ngIf="selectedTracks.length > 0">
-        <button class="button-accent generate" (click)="createPlaylist(playlistTitle.value, playlistDescription.value)">Create and add to library</button>
-        <div class="spinner" *ngIf="creatingPlaylist"></div>
+        <div class="name">
+          <p>{{track.name}}</p>
+          <span>{{track.artists[0].name}}</span>
+        </div>
+        <p class="album">{{track.album.name}}</p>
+        <button class="link" (click)="removeTrack(track)">Remove</button>
       </div>
     </div>
 
-
-    <div class="section" *ngIf="createdPlaylists.length > 0">
-      <h2 class="title">Created Playlists</h2>
-      <div class="playlists" *ngIf="createdPlaylists.length > 0">
-        <div *ngFor="let playlist of createdPlaylists" class="playlist">
-          <div class="name">
-            <p class="playlist-name">{{playlist.name}}</p>
-            <p class="description">{{playlist.description}}</p>
-          </div>
-          <a href="{{playlist.external_urls.spotify}}" class="link" target="_blank">Go to playlist</a>
-        </div>
-      </div>
+    <div class="button-row" *ngIf="selectedTracks.length > 0">
+      <button class="button-accent generate" (click)="createPlaylist(playlistTitle.value, playlistDescription.value)">Create and add to library</button>
+      <div class="spinner" *ngIf="creatingPlaylist"></div>
     </div>
   </div>
 
+
+  <div class="section" *ngIf="createdPlaylists.length > 0">
+    <h2 class="title">Created Playlists</h2>
+    <div class="playlists" *ngIf="createdPlaylists.length > 0">
+      <div *ngFor="let playlist of createdPlaylists" class="playlist">
+        <div class="name">
+          <p class="playlist-name">{{playlist.name}}</p>
+          <p class="description">{{playlist.description}}</p>
+        </div>
+        <a href="{{playlist.external_urls.spotify}}" class="link" target="_blank">Go to playlist</a>
+      </div>
+    </div>
+  </div>
 </div>
