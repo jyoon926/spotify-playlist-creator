@@ -10,11 +10,14 @@
 html {
   margin: 0;
   font-family: 'neue-haas-grotesk-text', serif;
-  font-size: 15px;
+  font-size: 14px;
   color: $text;
   background-color: $bg;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
