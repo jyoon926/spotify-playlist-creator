@@ -105,8 +105,8 @@ export class HomeComponent implements OnInit {
   }
 
   async setTitleAndDescription(playlist: any[]) {
-    let titleMessage = "Generate a title (1-5 words) for the playlist. Use a casual writing style and tone, and write in lowercase. Avoid slang. Use self-deprecating gen-z humor, sass, and vagueness.\n\n";
-    let descMessage = "Generate a description (< 10 words) for the playlist. Use a casual writing style and tone, and write in lowercase. Avoid slang. Use self-deprecating gen-z humor, sass, and vagueness.\n\n";
+    let titleMessage = "Generate a title (1-5 words) for the playlist. Use a casual writing style and tone, and write in lowercase. Avoid slang. Use self-deprecating humor, sass, and vagueness. Don't use the word vibe.\n\n";
+    let descMessage = "Generate a description (< 10 words) for the playlist. Use a casual writing style and tone, and write in lowercase. Avoid slang. Use self-deprecating humor, sass, and vagueness. Don't use the word vibe.\n\n";
     let data = {
       inspiration: this.selectedTracks.map(track => `'${track.name}' by ${track.artists[0].name}`),
       playlist: playlist.map(track => `${track.name} by ${track.artists[0].name}`),
