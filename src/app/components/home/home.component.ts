@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
     await this.setTitleAndDescription(res.tracks);
     this.playlist = res.tracks;
     this.generatingPlaylist = false;
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
   createPlaylist(title: string, description: string) {
@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
         this.createdPlaylists.push(playlist);
         this.playlistsService.addTracks(playlist.id, uris).subscribe(() => {
           this.creatingPlaylist = false;
-          this.scrollToBottom();
+          // this.scrollToBottom();
         });
       });
     })

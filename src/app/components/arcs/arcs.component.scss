@@ -28,7 +28,7 @@
       &:nth-child(#{$i + 1}) {
         animation-delay: $i * 0.6s - 2s;
         opacity: -1 * abs(0.1 * $i - 0.5) + 0.5;
-        filter: blur(25px * abs(0.1 * $i - 0.5) + 5px);
+        // filter: blur(25px * abs(0.1 * $i - 0.5) + 5px);
       }
     }
   }
