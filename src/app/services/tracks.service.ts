@@ -6,10 +6,7 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class TracksService {
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   searchTracks(term: string) {
     return this.http.get<any>(`/v1/search`, { params: {

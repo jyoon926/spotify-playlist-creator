@@ -1,4 +1,4 @@
-export let parameters = [
+export const parameters = [
   {
     displayName: 'Acousticness',
     name: 'target_acousticness',

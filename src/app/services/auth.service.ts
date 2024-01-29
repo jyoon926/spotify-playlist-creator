@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -17,6 +16,10 @@ export class AuthService {
 
   setToken() {
     this.token = this.getToken();
+  }
+
+  getToken() {
+    return this.token ? this.token : localStorage.getItem('access_token')!;
   }
 
   login() {
@@ -51,10 +54,6 @@ export class AuthService {
       this.token = res.access_token;
       this.router.navigate(['/']);
     });
-  }
-
-  getToken() {
-    return this.token ? this.token : localStorage.getItem('access_token')!;
   }
 
   logout() {

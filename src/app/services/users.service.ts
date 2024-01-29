@@ -6,12 +6,9 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  async getCurrentUser() {
-    return lastValueFrom(this.http.get<any>('/v1/me'));
+  getCurrentUser() {
+    return this.http.get<any>('/v1/me');
   }
 }

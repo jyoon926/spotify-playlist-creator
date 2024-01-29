@@ -9,9 +9,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
   title = 'spotify-playlist-creator';
 
-  constructor(
-    private authService: AuthService
-  ) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.setToken();

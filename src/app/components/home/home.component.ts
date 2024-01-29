@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Subject, debounceTime, lastValueFrom, tap } from 'rxjs';
+import { Subject, Subscription, debounceTime, lastValueFrom, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { OpenAiService } from 'src/app/services/openai.service';
 import { PlaylistsService } from 'src/app/services/playlists.service';
@@ -14,17 +14,28 @@ import { parameters } from './parameters';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  // Subscriptions
+  userSubscription: Subscription = new Subscription;
+  searchSubscription: Subscription = new Subscription;
+
+  // Arrays
   searchResults: any[] = [];
-  user: any;
   selectedTracks: any[] = [];
   playlist: any[] = [];
-  myControl = new FormControl();
   createdPlaylists: any[] = [];
-  playlistLength = 10;
+
+  // Playlist parameters
+  playlistLength = 20;
   parameters = parameters;
+
+  // Loading spinners
   loadingSearch = false;
   generatingPlaylist = false;
   creatingPlaylist = false;
+
+  // Misc
+  user: any;
+  searchControl = new FormControl();
   generatedPlaylistTitle = "";
   generatedPlaylistDescription = "";
   @ViewChild('playlistTitle') playlistTitle!: ElementRef<HTMLInputElement>;
@@ -38,14 +49,20 @@ export class HomeComponent implements OnInit {
     private openAiService: OpenAiService
   ) { }
 
-  async ngOnInit() {
-    this.user = await this.userService.getCurrentUser().catch(e => {
-      this.logout();
+  ngOnInit() {
+    this.userSubscription = this.userService.getCurrentUser().subscribe({
+      next: v => this.user = v,
+      error: e => this.logout()
     });
-    this.myControl.valueChanges.pipe(
+    this.searchSubscription = this.searchControl.valueChanges.pipe(
       debounceTime(500),
       tap(value => this.searchTracks(value))
    ).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+    this.searchSubscription.unsubscribe();
   }
 
   logout() {
@@ -87,7 +104,6 @@ export class HomeComponent implements OnInit {
     await this.setTitleAndDescription(res.tracks);
     this.playlist = res.tracks;
     this.generatingPlaylist = false;
-    // this.scrollToBottom();
   }
 
   createPlaylist(title: string, description: string) {
@@ -98,7 +114,6 @@ export class HomeComponent implements OnInit {
         this.createdPlaylists.push(playlist);
         this.playlistsService.addTracks(playlist.id, uris).subscribe(() => {
           this.creatingPlaylist = false;
-          // this.scrollToBottom();
         });
       });
     })
@@ -139,18 +154,12 @@ export class HomeComponent implements OnInit {
     this.playlistLength = event.target.value;
   }
 
-  setLoading() {
+  setLoadingSearch() {
     this.loadingSearch = true;
   }
 
   round(i: number) {
     return Math.round(i);
-  }
-
-  scrollToBottom(): void {
-    setTimeout(() => {
-      window.scrollTo(0, document.body.scrollHeight);
-    }, 100);
   }
 
   resizeTextareas() {
