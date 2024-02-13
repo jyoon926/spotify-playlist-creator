@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { OpenaiService } from './openai.service';
+import { CohereService } from './cohere.service';
 
-describe('OpenaiService', () => {
-  let service: OpenaiService;
+describe('CohereService', () => {
+  let service: CohereService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(OpenaiService);
+    service = TestBed.inject(CohereService);
   });
 
   it('should be created', () => {

@@ -2,11 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject, Subscription, debounceTime, lastValueFrom, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { OpenAiService } from 'src/app/services/openai.service';
 import { PlaylistsService } from 'src/app/services/playlists.service';
 import { TracksService } from 'src/app/services/tracks.service';
 import { UsersService } from 'src/app/services/users.service';
 import { parameters } from './parameters';
+import { CohereService } from 'src/app/services/cohere.service';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     private tracksService: TracksService,
     private playlistsService: PlaylistsService,
     private authService: AuthService,
-    private openAiService: OpenAiService
+    private cohereService: CohereService
   ) { }
 
   ngOnInit() {
@@ -120,19 +120,11 @@ export class HomeComponent implements OnInit {
   }
 
   async setTitleAndDescription(playlist: any[]) {
-    let titleMessage = "Generate a title (1-5 words) for the playlist. Use a casual writing style and tone, and write in lowercase. Avoid slang. Use self-deprecating humor, sass, and vagueness. Don't use the word vibe.\n\n";
-    let descMessage = "Generate a description (< 10 words) for the playlist. Use a casual writing style and tone, and write in lowercase. Avoid slang. Use self-deprecating humor, sass, and vagueness. Don't use the word vibe.\n\n";
-    let data = {
-      inspiration: this.selectedTracks.map(track => `'${track.name}' by ${track.artists[0].name}`),
-      playlist: playlist.map(track => `${track.name} by ${track.artists[0].name}`),
-      parameters: this.parameters.filter(p => p.on).map(({description, step, displayName, on, ...rest}) => rest)
-    }
-    titleMessage += JSON.stringify(data);
-    descMessage += JSON.stringify(data);
-    const title = await this.openAiService.completion(titleMessage);
-    const desc = await this.openAiService.completion(descMessage);
-    this.generatedPlaylistTitle = title!.trim().replaceAll('"', '');
-    this.generatedPlaylistDescription = desc!.trim().replaceAll('"', '');
+    let playlistInfo = await this.cohereService.generatePlaylistInfo(this.playlist, this.selectedTracks, this.parameters);
+
+    this.generatedPlaylistTitle = playlistInfo.title;
+    this.generatedPlaylistDescription = playlistInfo.description;
+
     await setTimeout(() => {
       this.resizeTextareas();
     }, 50);
