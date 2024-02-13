@@ -9,6 +9,10 @@ name: Deploy to Firebase Hosting on merge
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    env:
+      SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+      SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+      COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - run: npm ci && npm run build
