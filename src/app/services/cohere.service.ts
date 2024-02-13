@@ -7,7 +7,7 @@ import { CohereClient } from 'cohere-ai';
 })
 export class CohereService {
   cohere = new CohereClient({
-    token: environment.COHERE_API_KEY
+    token: environment.envVar.COHERE_API_KEY
   });
 
   constructor() { }

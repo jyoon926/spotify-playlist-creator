@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   token?: string;
-  private spotify_client_id = environment.SPOTIFY_CLIENT_ID;
-  private spotify_client_secret = environment.SPOTIFY_CLIENT_SECRET;
-  private spotify_redirect_uri = environment.url + '/callback';
+  private spotify_client_id = environment.envVar.SPOTIFY_CLIENT_ID;
+  private spotify_client_secret = environment.envVar.SPOTIFY_CLIENT_SECRET;
+  private spotify_redirect_uri = environment.baseUrl + '/callback';
 
   constructor(private http: HttpClient, private router: Router) { }
 

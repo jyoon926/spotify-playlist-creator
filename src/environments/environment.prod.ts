@@ -1,6 +1,9 @@
 export const environment = {
-  url: 'https://inspiredplaylists.web.app',
-  SPOTIFY_CLIENT_ID: '2c753d353cdb4d4bb6f3fa5a5cd710dd',
-  SPOTIFY_CLIENT_SECRET: '904efe09b73441a999f4ac9802894644',
-  COHERE_API_KEY: 'iyLBtKCRhyIXyDB0Oej1XDQ2G2N2oJe3QAPrrcH4'
+  production: true,
+  baseUrl: 'https://inspiredplaylists.web.app',
+  envVar: {
+    SPOTIFY_CLIENT_ID: '',
+    SPOTIFY_CLIENT_SECRET: '',
+    COHERE_API_KEY: ''
+  }
 };
