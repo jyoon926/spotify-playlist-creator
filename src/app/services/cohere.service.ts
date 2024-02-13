@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { CohereClient } from 'cohere-ai';
 
 @Injectable({
@@ -7,7 +6,7 @@ import { CohereClient } from 'cohere-ai';
 })
 export class CohereService {
   cohere = new CohereClient({
-    token: environment.envVar.COHERE_API_KEY
+    token: import.meta.env['COHERE_API_KEY']!
   });
 
   constructor() { }
