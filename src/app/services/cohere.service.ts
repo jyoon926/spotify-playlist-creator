@@ -6,7 +6,7 @@ import { CohereClient } from 'cohere-ai';
 })
 export class CohereService {
   cohere = new CohereClient({
-    token: import.meta.env['COHERE_API_KEY']!
+    token: import.meta.env['NG_APP_COHERE_API_KEY']!
   });
 
   constructor() { }
@@ -18,7 +18,7 @@ export class CohereService {
       parameters: parameters.filter(p => p.on).map(({description, step, displayName, on, ...rest}) => rest)
     }
 
-    const prompt = JSON.stringify(data) + "\nGiven this playist, generate a title (<5 words) and description (<10 words). Use slightly self-deprecating humor and sass. Take into consideration the type of songs in the playlist as well as the parameters. Return the title and description as a stringified JSON object. Don't write any other text.";
+    const prompt = JSON.stringify(data) + "\nGiven this playist, generate a title (<5 words) and description (<10 words). Consider the type of songs in the playlist and the overall mood. Use a bit of humor and sass. Return the title and description as a stringified JSON object. Don't write any other text.";
 
     let response: any = (await this.generate(prompt, 0.2)).trim();
     try {
