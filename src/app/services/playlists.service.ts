@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { EMPTY } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,9 @@ export class PlaylistsService {
   }
 
   editPlaylistDescription(playlist_id: string, description: string) {
-    return this.http.put(`/v1/playlists/${playlist_id}`, { description });
+    if (description)
+        return this.http.put(`/v1/playlists/${playlist_id}`, { description });
+    return EMPTY;
   }
 
   addTracks(playlistId: string, uris: string[]) {

@@ -64,8 +64,8 @@
       </div>
   
       <div class="length">
-        <label for="length">Playlist length</label>
-        <input type="number" id="length" value="{{playlistLength}}" (change)="changeLength($event)">
+        <label for="length">Playlist length <em>(1-100)</em></label>
+        <input type="number" id="length" value="{{playlistLength}}" min="1" max="100" (change)="changeLength($event)">
       </div>
   
       <div class="button-row">

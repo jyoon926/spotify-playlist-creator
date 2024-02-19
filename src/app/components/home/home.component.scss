@@ -242,6 +242,11 @@
         width: 50px;
         border-radius: 5px;
       }
+
+      em {
+        font-style: normal;
+        color: rgba($text, 0.5);
+      }
     }
 
     .parameters {
