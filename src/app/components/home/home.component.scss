@@ -189,7 +189,6 @@
   
         img {
           height: 35px;
-          border-radius: 3px;
         }
         
         .name {
@@ -203,27 +202,31 @@
           width: 50%;
           padding: 2px 0;
 
-          p {
+          .trackname {
             text-wrap: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
           }
   
-          span {
+          .artistname {
             color: rgba($text, 0.5);
             font-size: 0.8rem;
           }
         }
 
         .album {
-          // width: 50%;
+          width: 50%;
           flex-grow: 1;
           opacity: 0.5;
           text-wrap: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
       }
     }

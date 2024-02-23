@@ -21,14 +21,14 @@
 
     <div class="tracks">
       <div *ngFor="let track of searchResults" class="track">
-        <div class="image">
+        <a [href]="track.album.external_urls.spotify" target="_blank" class="image">
           <img src="{{track.album.images[2].url}}" alt="">
-        </div>
+        </a>
         <div class="name">
-          <p>{{track.name}}</p>
-          <span>{{track.artists[0].name}}</span>
+          <a class="trackname" [href]="track.external_urls.spotify" target="_blank">{{track.name}}</a>
+          <a class="artistname" [href]="track.artists[0].external_urls.spotify" target="_blank">{{track.artists[0].name}}</a>
         </div>
-        <p class="album">{{track.album.name}}</p>
+        <a class="album" [href]="track.album.external_urls.spotify" target="_blank">{{track.album.name}}</a>
         <button *ngIf="!selectedTracks.includes(track)" class="link" (click)="selectTrack(track)">Select</button>
         <button *ngIf="selectedTracks.includes(track)" class="link" (click)="deselectTrack(track)">Deselect</button>
       </div>
@@ -39,14 +39,14 @@
       <h4 class="title">Selected tracks <em>({{selectedTracks.length == 5 ? 'max' : selectedTracks.length}})</em></h4>
       <div class="tracks">
         <div *ngFor="let track of selectedTracks; let i = index" class="track">
-          <div class="image">
+          <a [href]="track.album.external_urls.spotify" target="_blank" class="image">
             <img src="{{track.album.images[2].url}}" alt="">
-          </div>
+          </a>
           <div class="name">
-            <p>{{track.name}}</p>
-            <span>{{track.artists[0].name}}</span>
+            <a class="trackname" [href]="track.external_urls.spotify" target="_blank">{{track.name}}</a>
+            <a class="artistname" [href]="track.artists[0].external_urls.spotify" target="_blank">{{track.artists[0].name}}</a>
           </div>
-          <p class="album">{{track.album.name}}</p>
+          <a class="album" [href]="track.album.external_urls.spotify" target="_blank">{{track.album.name}}</a>
           <button class="link" (click)="deselectTrack(track)">Deselect</button>
         </div>
       </div>
@@ -84,14 +84,14 @@
     <div class="tracks">
       <div *ngFor="let track of playlist; let i = index" class="track">
         <p class="index">{{i + 1}}</p>
-        <div class="image">
+        <a [href]="track.album.external_urls.spotify" target="_blank" class="image">
           <img src="{{track.album.images[2].url}}" alt="">
-        </div>
+        </a>
         <div class="name">
-          <p>{{track.name}}</p>
-          <span>{{track.artists[0].name}}</span>
+          <a class="trackname" [href]="track.external_urls.spotify" target="_blank">{{track.name}}</a>
+          <a class="artistname" [href]="track.artists[0].external_urls.spotify" target="_blank">{{track.artists[0].name}}</a>
         </div>
-        <p class="album">{{track.album.name}}</p>
+        <a class="album" [href]="track.album.external_urls.spotify" target="_blank">{{track.album.name}}</a>
         <button class="link" (click)="removeTrack(track)">Remove</button>
       </div>
     </div>
